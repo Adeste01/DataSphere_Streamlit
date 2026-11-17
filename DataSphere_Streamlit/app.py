@@ -2082,7 +2082,7 @@ elif selected_page == "About & Methodology":
             (
                 "OCTAVIANA AYU HARINI",
                 "Data Science & Machine Learning",
-                "Responsible for data preprocessing, mathematical and statistical analysis, Machine Learning modeling, model evaluation, and data interpretation.",
+                "Responsible for data processing, data analysis, Machine Learning modeling, model evaluation, and application feature development.",
                 octaviana_photo
             ),
         ]
