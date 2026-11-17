@@ -66,8 +66,8 @@ def render_ai_assistant():
             st.markdown(message["content"])
 
     # API key and client
-    api_key = _groq_setting("GROQ_API_KEY")
-    model_name = _groq_setting("GROQ_MODEL", "openai/gpt-oss-120b") or "openai/gpt-oss-120b"
+    api_key = st.secrets("GROQ_API_KEY")
+    model_name = st.secrets("GROQ_MODEL", "openai/gpt-oss-120b") or "openai/gpt-oss-120b"
     if not api_key:
         st.error(
             "GROQ_API_KEY was not found. Save the key in "
