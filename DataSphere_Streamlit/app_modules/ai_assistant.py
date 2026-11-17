@@ -12,7 +12,15 @@ def _groq_setting(name, default=""):
 
 
 def render_ai_assistant():
-    """Render the NusaInsight AI Assistant page."""
+    api_key = get_groq_api_key()
+
+    if not api_key:
+        st.warning(
+            "Groq API Key belum dikonfigurasi. "
+            "Silakan tambahkan GROQ_API_KEY "
+            "pada Streamlit Cloud Secrets."
+        )
+        return
 
     st.title("🤖 NusaInsight AI Assistant")
     st.caption("An AI assistant for learning data science and understanding machine learning.")
@@ -66,7 +74,19 @@ def render_ai_assistant():
             st.markdown(message["content"])
 
     # API key and client
-    api_key = st.secrets("GROQ_API_KEY")
+   def get_groq_api_key():
+    """Mengambil Groq API Key dari Streamlit Secrets atau environment."""
+
+    try:
+        api_key = st.secrets.get("GROQ_API_KEY", "")
+    except Exception:
+        api_key = ""
+
+    if not api_key:
+        api_key = os.getenv("GROQ_API_KEY", "")
+
+    return api_key
+
     model_name = st.secrets("GROQ_MODEL", "openai/gpt-oss-120b") or "openai/gpt-oss-120b"
     if not api_key:
         st.error(
